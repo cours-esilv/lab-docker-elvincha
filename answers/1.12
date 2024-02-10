@@ -1,0 +1,5 @@
+# Start the back-end container
+docker run -d --name my-flask-app-backend my-flask-app
+
+# Start the front-end container with environment variable pointing to the back-end
+docker run -d -p 8080:80 --name my-frontend-container --link my-flask-app-backend -e WS_BACK_URL=http://my-flask-app-backend:5000 my-frontend-app
