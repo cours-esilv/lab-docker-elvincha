@@ -1,0 +1,16 @@
+version: '3'
+services:
+  my-back-end:
+    image: my-flask-app   # Replace 'my-flask-app' with the name of your back-end image
+    ports:
+      - "5000:5000"       # Expose port 5000 for the back-end service
+    environment:
+      - BACKEND_URL=http://my-back-end:5000  # Set environment variable for back-end URL
+    volumes:
+      - ./back-end-data:/app/data   # Mount a local directory for data persistence
+  my-front-end:
+    image: my-frontend-app   # Replace 'my-frontend-app' with the name of your front-end image
+    ports:
+      - "8080:80"          # Expose port 8080 for the front-end service
+    environment:
+      - BACKEND_URL=http://my-back-end:5000  # Set environment variable for back-end URL
